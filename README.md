@@ -78,28 +78,6 @@ Proyecto MAUI que incluye vistas para autenticación, perfil y manejo de experie
 
 6. iOS / MacCatalyst: requiere macOS y Xcode; abre la solución en Visual Studio para Mac o usa `dotnet` desde macOS con los workloads instalados.
 
-## Limpieza después de añadir `.gitignore`
-
-Si subiste accidentalmente archivos que deberían estar en `.gitignore` (por ejemplo `bin/`, `obj/`), una forma segura de limpiarlo sin reescribir el historial es:
-
-```powershell
-# 1) Asegúrate en main
-git checkout main
-git pull origin main
-
-# 2) Crear un bundle de backup (por si hay que recuperar)
-$dt = (Get-Date -Format yyyyMMdd_HHmmss)
-git bundle create "backup-$dt.bundle" --all
-
-# 3) Eliminar del índice los archivos ahora ignorados y commitear el cambio
-git rm -r --cached .
-git add .
-git commit -m "Remove files now ignored by .gitignore"
-git push origin main
-```
-
-Este método no borra los archivos de commits pasados, pero los elimina del `HEAD` y evita que se suban de nuevo.
-
 ## Notas sobre `ApiService` y backend
 
 - Si pruebas en el emulador Android y tu backend corre en tu máquina local en el puerto `5062`, deja `http://10.0.2.2:5062/api/`.
@@ -112,15 +90,9 @@ Este método no borra los archivos de commits pasados, pero los elimina del `HEA
 - Errores en la compilación de Android: instala y actualiza el Android SDK y crea un AVD con una API >= la versión mínima especificada en el `.csproj`.
 - iOS sólo en macOS: necesitarás un Mac con Xcode y permisos adecuados.
 
-## Contribuir
-
-- Si vas a colaborar, crea ramas para tus cambios y abre Pull Requests hacia `main`.
-- Mantén el `.gitignore` actualizado para evitar subir binarios.
-
 ## Contacto
 
 Si necesitas ayuda adicional, deja una issue en el repositorio o contacta al mantenedor.
-
 ---
 
 Archivo generado y actualizado con instrucciones básicas de ejecución y notas específicas del proyecto.
