@@ -1,0 +1,90 @@
+# .gitignore para proyecto .NET MAUI
+# Excluir binarios, artefactos de compilación y archivos de usuario
+
+# Build outputs
+bin/
+obj/
+
+# Visual Studio y archivos de usuario
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# VS Code (opcional: si compartes configuraciones de equipo, conserva lo necesario)
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+.nuget/
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Temporary
+*.tmp
+*.temp
+
+# Xamarin / MAUI specific
+*.keystore
+*.p12
+*.jks
+*.apk
+*.ap_
+*.aab
+*.ipa
+*.app
+*.app.dSYM
+*.dSYM
+
+# Android/Gradle
+.gradle/
+local.properties
+
+# iOS / Xcode
+xcuserdata/
+*.xcuserstate
+*.xcworkspace
+
+# Platform packages and artifacts
+*.msix
+*.msixbundle
+*.msi
+
+# Ignore generated resource/design files
+R.txt
+
+# OneDrive/Backup temporary files
+~$*
+
+# Ignore node_modules if present for any tooling
+node_modules/
+
+# Ignore tools cache
+.vsconfig
+
+# variables de entorno
+env.ps1
+env.sh
+.env
+

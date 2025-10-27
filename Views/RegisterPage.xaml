@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Experiencias_Significativas_App.MAUI.Views.RegisterPage"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+            <GradientStop Color="#FFFFFFFF" Offset="0.2" />
+            <GradientStop Color="#009CFF" Offset="0.8" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <Grid RowDefinitions="*,Auto,*"
+              Padding="20">
+
+            <!-- Tarjeta de registro centrada -->
+            <Border Grid.Row="1"
+                    StrokeThickness="0"
+                    BackgroundColor="#80FFFFFF"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="500"
+                    Margin="0,5,0,20">
+
+                <VerticalStackLayout Spacing="18"
+                                     WidthRequest="310">
+
+                    <!-- Título -->
+                    <Label Text="Registro"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="#1A1A1A"
+                           Margin="0,0,0,10" />
+
+                    <!-- FILA 1: NOMBRES -->
+                    <Grid ColumnDefinitions="*,12,*"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+
+                        <!-- Primer Nombre -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Primer Nombre:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="FirstNameEntry"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="10,0" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Segundo Nombre -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8">
+                            <Label Text="Segundo Nombre:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="MiddleNameEntry"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="15,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- FILA 2: APELLIDOS -->
+                    <Grid ColumnDefinitions="*,12,*"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+
+                        <!-- Primer Apellido -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Primer Apellido:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="FirstLastNameEntry"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="15,0" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Segundo Apellido -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8">
+                            <Label Text="Segundo Apellido:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="SecondLastNameEntry"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="15,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- FILA 3: DOCUMENTO -->
+                    <Grid ColumnDefinitions="*,12,*"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+
+                        <!-- Tipo de documento -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Tipo de documento:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,15,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="48">
+                                <Picker x:Name="DocumentTypePicker"
+                                        Title="Seleccionar"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#1A1A1A"
+                                        VerticalOptions="Center"
+                                        FontSize="16"
+                                        Margin="10,0" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Número de documento -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8">
+                            <Label Text="Numero de documento:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="IdentificationNumberEntry"
+                                       Keyboard="Numeric"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="15,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- FILA 4: CÓDIGO DANE Y USUARIO -->
+                    <Grid ColumnDefinitions="*,12,*"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+
+                        <!-- Código DANE -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Código DANE:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Picker x:Name="CodeDanePicker"
+                                        Title="Seleccionar"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#1A1A1A"
+                                        VerticalOptions="Center"
+                                        FontSize="16"
+                                        Margin="10,0" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Nombre de Usuario -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8">
+                            <Label Text="Nombre de ususario:"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="UsernameEntry"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="15,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- FILA 5: CORREO INSTITUCIONAL Y CONTRASEÑA -->
+                    <Grid ColumnDefinitions="*,12,*"
+                          ColumnSpacing="0"
+                          RowSpacing="0">
+
+                        <!-- Correo Institucional -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Correo Institucional"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Picker x:Name="EmailInstitutionalPicker"
+                                        Title="Seleccionar"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#1A1A1A"
+                                        VerticalOptions="Center"
+                                        FontSize="16"
+                                        Margin="10,0" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Contraseña -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8">
+                            <Label Text="Contraseña"
+                                   FontSize="14"
+                                   TextColor="#333333"
+                                   Margin="5,0,0,0" />
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="#CCFFFFFF"
+                                    StrokeShape="RoundRectangle 10"
+                                    HeightRequest="45">
+                                <Entry x:Name="PasswordEntry"
+                                       IsPassword="True"
+                                       Placeholder=""
+                                       BackgroundColor="Transparent"
+                                       TextColor="#1A1A1A"
+                                       PlaceholderColor="#888888"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="15,0" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Botón Registrarse -->
+                    <Button Text="Registrarse"
+                            x:Name="RegisterButton"
+                            BackgroundColor="#009CFF"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            Margin="0,10,0,0"
+                            Clicked="OnRegisterClicked"
+                            Shadow="{Shadow Brush=#009CFF, Offset='0,2', Radius=8, Opacity=0.4}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Link de ayuda -->
+            <VerticalStackLayout Grid.Row="2"
+                                Spacing="10"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Start"
+                                Margin="0,-10,0,0">
+                <Label Text="¿Quieres iniciar sesión?"
+                       FontSize="14"
+                       TextColor="White"
+                       TextDecorations="Underline"
+                       HorizontalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLoginLinkTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

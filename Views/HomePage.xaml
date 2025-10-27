@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Experiencias_Significativas_App.MAUI.ContentViews"
+             x:Class="Experiencias_Significativas_App.MAUI.Views.HomePage"
+             BackgroundColor="#F5F5F5">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+        <!-- FILA 0: Barra de búsqueda -->
+        <Border Grid.Row="0"
+                BackgroundColor="#F5F5F5"
+                Padding="10">
+            <Grid ColumnDefinitions="*,Auto">
+                <!-- Campo de búsqueda -->
+                <Border Grid.Column="0"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 10"
+                        HeightRequest="45"
+                        Margin="0,0,10,0">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Image Grid.Column="0"
+                               Source="search_icon.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               Margin="15,0,10,0"
+                               VerticalOptions="Center" />
+                        <Entry Grid.Column="1"
+                               x:Name="SearchEntry"
+                               Placeholder="Buscar..."
+                               BackgroundColor="Transparent"
+                               TextColor="#1A1A1A"
+                               PlaceholderColor="#888888"
+                               VerticalTextAlignment="Center"
+                               FontSize="16" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- FILA 1: Filtros -->
+        <HorizontalStackLayout Grid.Row="1"
+                               HorizontalOptions="Center"
+                               Spacing="14"
+                               Margin="0,10,0,0">
+
+            <!-- Botón Ejes Temáticos -->
+            <Border x:Name="EjesFilterBorder"
+                    StrokeThickness="0"
+                    BackgroundColor="#009CFF"
+                    StrokeShape="RoundRectangle 22"
+                    Padding="25,8">
+                <Label x:Name="EjesFilterLabel"
+                       Text="Ejes temáticos"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+            </Border>
+
+            <!-- Botón Experiencias -->
+            <Border x:Name="ExperienciasFilterBorder"
+                    StrokeThickness="0"
+                    BackgroundColor="#e7e7e7"
+                    StrokeShape="RoundRectangle 22"
+                    Padding="25,8">
+                <Label x:Name="ExperienciasFilterLabel"
+                       Text="Experiencias"
+                       FontSize="16"   
+                       FontAttributes="Bold"
+                       TextColor="#009CFF"
+                       VerticalOptions="Center" />
+            </Border>
+        </HorizontalStackLayout>
+
+        <!-- FILA 2: Contenido principal -->
+        <ScrollView Grid.Row="2"
+                    Padding="15,7,15,30"
+                    Margin="10,0,0,0">
+            <VerticalStackLayout Spacing="0">
+
+                <!-- ===== Ejes Temáticos ===== -->
+                <VerticalStackLayout x:Name="EjesGrid"
+                                     IsVisible="True"
+                                     Spacing="16">
+
+                    <!-- Fila 1 -->
+                    <Grid ColumnDefinitions="*,*"               
+                          ColumnSpacing="16">
+
+                        <!-- Educación Ambiental -->
+                        <Border Grid.Column="0"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="ambiental.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Educación Ambiental"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!-- Ciencia y Tecnología -->
+                        <Border Grid.Column="1"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="ciencia.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Ciencia y Tecnología"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+
+                    <!-- Fila 2 -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                        <!-- Interculturalidad y Bilingüismo -->
+                        <Border Grid.Column="0"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="libros.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Interculturalidad&#x0a;Bilingüismo"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!-- Arte y Cultura -->
+                        <Border Grid.Column="1"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="arte.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Arte, Cultura y"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+
+                    <!-- Fila 3 -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                        <!-- Habilidades Comunicativas -->
+                        <Border Grid.Column="0"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="comunicacion.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Habilidades&#x0a;Comunicativas"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!-- Académica Curricular -->
+                        <Border Grid.Column="1"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="academico.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Académica Curricular"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+
+                    <!-- Fila 4 -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                        <!-- Inclusión Diversidad -->
+                        <Border Grid.Column="0"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="inclusion.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Inclusión Diversidad"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!-- Convivencia Escolar -->
+                        <Border Grid.Column="1"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="mundo.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Convivencia Escolar&#x0a;(Ciencias Sociales)"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+
+                    <!-- Fila 5 -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                        <!-- Danza, Deporte y Recreación -->
+                        <Border Grid.Column="0"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="140">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="deporte.png" WidthRequest="60" HeightRequest="60" />
+                                <Label Text="Danza, Deporte y Recreación"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- ===== Experiencias ===== -->
+                <VerticalStackLayout x:Name="ExperienciasGrid"
+                                     IsVisible="False"
+                                     Spacing="16">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+
+                        <!-- Experiencia 1 -->
+                        <Border Grid.Column="0"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="160">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="experiencia.png" WidthRequest="70" HeightRequest="70" />
+                                <Border StrokeThickness="0"
+                                        BackgroundColor="#F8F9FB"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="15,8">
+                                    <Label Text="Visitar Experiencia"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!-- Experiencia 2 -->
+                        <Border Grid.Column="1"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="15"
+                                HeightRequest="160">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.2" />
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="experiencia.png" WidthRequest="70" HeightRequest="70" />
+                                <Border StrokeThickness="0"
+                                        BackgroundColor="#F8F9FB"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="15,8">
+                                    <Label Text="Visitar Experiencia"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- FILA 3: Menú inferior fijo -->
+        <views:BottomMenu Grid.Row="3" />
+    </Grid>
+</ContentPage>
