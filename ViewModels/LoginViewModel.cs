@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Experiencias_Significativas_App.MAUI.Services;
+using Experiencias_Significativas_App.MAUI.Models;
 using Microsoft.Maui.Storage;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui;
 
 namespace Experiencias_Significativas_App.MAUI.ViewModels
 {
@@ -17,7 +17,7 @@ namespace Experiencias_Significativas_App.MAUI.ViewModels
         public LoginViewModel()
         {
             _apiService = new ApiService();
-            LoginCommand = new Command(async () => await LoginAsync());
+            LoginCommand = new Command(async () => await LoginAsync(), () => !IsBusy);
         }
 
         public string Username
@@ -27,6 +27,7 @@ namespace Experiencias_Significativas_App.MAUI.ViewModels
             {
                 _username = value;
                 OnPropertyChanged();
+                ((Command)LoginCommand).ChangeCanExecute();
             }
         }
 
@@ -37,6 +38,7 @@ namespace Experiencias_Significativas_App.MAUI.ViewModels
             {
                 _password = value;
                 OnPropertyChanged();
+                ((Command)LoginCommand).ChangeCanExecute();
             }
         }
 
@@ -47,6 +49,7 @@ namespace Experiencias_Significativas_App.MAUI.ViewModels
             {
                 _isBusy = value;
                 OnPropertyChanged();
+                ((Command)LoginCommand).ChangeCanExecute();
             }
         }
 
@@ -54,24 +57,66 @@ namespace Experiencias_Significativas_App.MAUI.ViewModels
 
         private async Task LoginAsync()
         {
-            if (IsBusy)
+            // Validaciones básicas
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Ingresa tu usuario", "Aceptar");
                 return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Ingresa tu contraseña", "Aceptar");
+                return;
+            }
 
             IsBusy = true;
 
-            var token = await _apiService.LoginAsync(Username, Password);
-
-            if (token != null)
+            try
             {
-                await SecureStorage.SetAsync("jwt_token", token);
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.RegisterPage());
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "Credenciales inválidas", "OK");
-            }
+                var user = new UserDto
+                {
+                    username = Username,
+                    password = Password
+                };
 
-            IsBusy = false;
+                var token = await _apiService.LoginAsync(user);
+
+                if (!string.IsNullOrEmpty(token))
+                {
+                    // ✅ Guardamos el token
+                    Preferences.Set("AuthToken", token);
+
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Éxito",
+                        "Inicio de sesión correcto.",
+                        "Continuar"
+                    );
+
+                    // Navegar a la página principal
+                    await Shell.Current.GoToAsync("//HomePage");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        "Usuario o contraseña incorrectos.",
+                        "Aceptar"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error de conexión",
+                    $"No se pudo conectar con el servidor:\n{ex.Message}",
+                    "Aceptar"
+                );
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

@@ -7,12 +7,11 @@
 
     <Grid RowDefinitions="Auto,Auto,*,Auto">
 
-        <!-- FILA 0: Barra de búsqueda -->
         <Border Grid.Row="0"
                 BackgroundColor="#F5F5F5"
                 Padding="10">
             <Grid ColumnDefinitions="*,Auto">
-                <!-- Campo de búsqueda -->
+                
                 <Border Grid.Column="0"
                         StrokeThickness="0"
                         BackgroundColor="White"
@@ -39,13 +38,12 @@
             </Grid>
         </Border>
 
-        <!-- FILA 1: Filtros -->
+
         <HorizontalStackLayout Grid.Row="1"
                                HorizontalOptions="Center"
                                Spacing="14"
                                Margin="0,10,0,0">
 
-            <!-- Botón Ejes Temáticos -->
             <Border x:Name="EjesFilterBorder"
                     StrokeThickness="0"
                     BackgroundColor="#009CFF"
@@ -59,7 +57,7 @@
                        VerticalOptions="Center" />
             </Border>
 
-            <!-- Botón Experiencias -->
+
             <Border x:Name="ExperienciasFilterBorder"
                     StrokeThickness="0"
                     BackgroundColor="#e7e7e7"
@@ -74,22 +72,18 @@
             </Border>
         </HorizontalStackLayout>
 
-        <!-- FILA 2: Contenido principal -->
         <ScrollView Grid.Row="2"
                     Padding="15,7,15,30"
                     Margin="10,0,0,0">
             <VerticalStackLayout Spacing="0">
 
-                <!-- ===== Ejes Temáticos ===== -->
                 <VerticalStackLayout x:Name="EjesGrid"
                                      IsVisible="True"
                                      Spacing="16">
 
-                    <!-- Fila 1 -->
                     <Grid ColumnDefinitions="*,*"               
                           ColumnSpacing="16">
 
-                        <!-- Educación Ambiental -->
                         <Border Grid.Column="0"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -109,7 +103,7 @@
                             </VerticalStackLayout>
                         </Border>
 
-                        <!-- Ciencia y Tecnología -->
+
                         <Border Grid.Column="1"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -130,9 +124,8 @@
                         </Border>
                     </Grid>
 
-                    <!-- Fila 2 -->
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
-                        <!-- Interculturalidad y Bilingüismo -->
+
                         <Border Grid.Column="0"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -152,7 +145,6 @@
                             </VerticalStackLayout>
                         </Border>
 
-                        <!-- Arte y Cultura -->
                         <Border Grid.Column="1"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -173,9 +165,9 @@
                         </Border>
                     </Grid>
 
-                    <!-- Fila 3 -->
+                   
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
-                        <!-- Habilidades Comunicativas -->
+
                         <Border Grid.Column="0"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -195,7 +187,6 @@
                             </VerticalStackLayout>
                         </Border>
 
-                        <!-- Académica Curricular -->
                         <Border Grid.Column="1"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -216,9 +207,8 @@
                         </Border>
                     </Grid>
 
-                    <!-- Fila 4 -->
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
-                        <!-- Inclusión Diversidad -->
+                        
                         <Border Grid.Column="0"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -238,7 +228,7 @@
                             </VerticalStackLayout>
                         </Border>
 
-                        <!-- Convivencia Escolar -->
+                        
                         <Border Grid.Column="1"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -259,9 +249,9 @@
                         </Border>
                     </Grid>
 
-                    <!-- Fila 5 -->
+                   
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
-                        <!-- Danza, Deporte y Recreación -->
+                       
                         <Border Grid.Column="0"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -283,13 +273,12 @@
                     </Grid>
                 </VerticalStackLayout>
 
-                <!-- ===== Experiencias ===== -->
                 <VerticalStackLayout x:Name="ExperienciasGrid"
                                      IsVisible="False"
                                      Spacing="16">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
 
-                        <!-- Experiencia 1 -->
+                        
                         <Border Grid.Column="0"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -314,7 +303,7 @@
                             </VerticalStackLayout>
                         </Border>
 
-                        <!-- Experiencia 2 -->
+                       
                         <Border Grid.Column="1"
                                 StrokeThickness="0"
                                 BackgroundColor="White"
@@ -343,7 +332,6 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- FILA 3: Menú inferior fijo -->
         <views:BottomMenu Grid.Row="3" />
     </Grid>
 </ContentPage>

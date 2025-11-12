@@ -1,82 +1,87 @@
 ﻿using System;
 using System.Net.Http;
-using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Experiencias_Significativas_App.MAUI.Models;
 
 namespace Experiencias_Significativas_App.MAUI.Services
 {
     public class ApiService
     {
-        private readonly HttpClient _httpClient;
+        private static HttpClient _httpClient; // 👈 Ahora es static
+        private const string BaseUrl = "http://10.0.2.2:5062/api/";
 
         public ApiService()
         {
-            // ✅ Usa la IP especial para emulador Android
-            _httpClient = new HttpClient
+            if (_httpClient == null)
             {
-                BaseAddress = new Uri("http://10.0.2.2:5062/api/")
-            };
-        }
-
-        // 🔹 Clase que representa la respuesta del backend
-        private class LoginResponse
-        {
-            public string Token { get; set; } // asegúrate de que coincida con lo que devuelve tu AuthController
-        }
-
-        // 🔹 Método para probar la conexión con el backend
-        public async Task<bool> TestConnectionAsync()
-        {
-            try
-            {
-                var response = await _httpClient.GetAsync("Auth");
-                return response.IsSuccessStatusCode;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"❌ Error de conexión: {ex.Message}");
-                return false;
-            }
-        }
-
-        // 🔹 Método para iniciar sesión
-        public async Task<string> LoginAsync(string username, string password)
-        {
-            try
-            {
-                var loginData = new
+                _httpClient = new HttpClient
                 {
-                    Username = username,
-                    Password = password
+                    BaseAddress = new Uri(BaseUrl),
+                    Timeout = TimeSpan.FromSeconds(30)
                 };
+            }
+        }
 
-                // 📡 Enviamos los datos al endpoint del backend
-                var response = await _httpClient.PostAsJsonAsync("Auth/Login", loginData);
+        public async Task<string?> LoginAsync(UserDto user)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(user);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                // ⚠️ Si el backend responde con error (400, 401, 500...)
+                // 👇 Solo usa la ruta relativa, no la URL completa
+                var url = "Auth/Login";
+
+                System.Diagnostics.Debug.WriteLine($"➡️ Enviando POST a: {BaseUrl}{url}");
+                System.Diagnostics.Debug.WriteLine($"📤 Body: {json}");
+
+                var response = await _httpClient.PostAsync(url, content);
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+                System.Diagnostics.Debug.WriteLine($"⬅️ HTTP: {response.StatusCode}");
+                System.Diagnostics.Debug.WriteLine($"📦 Body respuesta: {responseBody}");
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    var errorMessage = await response.Content.ReadAsStringAsync();
-                    System.Diagnostics.Debug.WriteLine($"❌ Error HTTP: {response.StatusCode} - {errorMessage}");
+                    System.Diagnostics.Debug.WriteLine($"❌ Error del servidor: {response.StatusCode}");
                     return null;
                 }
 
-                // 📦 Leer el JSON correctamente con tolerancia de mayúsculas/minúsculas
-                var options = new JsonSerializerOptions
+                // Analizamos el JSON
+                using var document = JsonDocument.Parse(responseBody);
+                var root = document.RootElement;
+
+                // Intentamos obtener el token de diferentes estructuras posibles
+                if (root.TryGetProperty("data", out var data) &&
+                    data.TryGetProperty("token", out var tokenFromData))
                 {
-                    PropertyNameCaseInsensitive = true
-                };
+                    return tokenFromData.GetString();
+                }
 
-                var result = await response.Content.ReadFromJsonAsync<LoginResponse>(options);
+                if (root.TryGetProperty("token", out var token))
+                {
+                    return token.GetString();
+                }
 
-                // ✅ Devuelve el token si existe
-                return result?.Token;
+                System.Diagnostics.Debug.WriteLine("⚠️ No se encontró token en la respuesta");
+                return null;
+            }
+            catch (HttpRequestException httpEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"❌ Error HTTP: {httpEx.Message}");
+                throw new Exception($"Error de conexión: {httpEx.Message}");
+            }
+            catch (TaskCanceledException)
+            {
+                System.Diagnostics.Debug.WriteLine("❌ Timeout");
+                throw new Exception("La solicitud tardó demasiado tiempo");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"❌ Error en LoginAsync: {ex.Message}");
-                return null;
+                System.Diagnostics.Debug.WriteLine($"❌ Error general: {ex.Message}");
+                throw;
             }
         }
     }

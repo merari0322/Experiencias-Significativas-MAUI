@@ -10,7 +10,6 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <!-- Menú inferior -->
         <views:BottomMenu Grid.Row="1" />
         
     </VerticalStackLayout>
